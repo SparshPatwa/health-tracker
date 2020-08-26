@@ -1,0 +1,25 @@
+{
+  "name": "health-tracker",
+  "version": "1.0.0",
+  "description": "Health tracking app with goals and dashboard",
+  "main": "server.js",
+  "dependencies": {
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SparshPatwa/health-tracker.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SparshPatwa/health-tracker/issues"
+  },
+  "homepage": "https://github.com/SparshPatwa/health-tracker#readme"
+}
