@@ -14,7 +14,7 @@ async function signupFormHandler(event) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
-            // Redirect to Home
+            // Redirect to user home
             document.location.replace('/');
         } else {
             alert(response.statusText);
@@ -38,7 +38,7 @@ async function loginFormHandler(event) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
-            // Redirect to Home
+            // Redirect to user home
             document.location.replace('/');
             debugger
             idleLogout();
