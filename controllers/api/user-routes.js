@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const authenticate = require('../../util/authenticate');
 
 // `/api/user` HTML request endpoint
 
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     User.findOne({
         where: { id: req.params.id },
-        attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password', 'id'] }
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -29,7 +30,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Delete a user by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
     User.destroy({
         where: { id: req.params.id },
     })
@@ -84,6 +85,18 @@ router.post('/login', (req, res) => {
             res.json({ user: userData, message: 'You are now logged in!' });
         });
     });
+});
+
+// Logout logged-in user, endpoint=/api/user/logout/
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+    else {
+      res.status(404).end();
+    }
 });
 
 module.exports = router;
