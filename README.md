@@ -16,10 +16,10 @@
 - [Questions](#questions)
 
 ## Installation
-💾 
+💾 npm install  
 
 ## Usage
-💻 
+💻 npm run start  
 
 ## License
 ![badge](https://img.shields.io/badge/license-MIT-brightgreen)
