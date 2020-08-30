@@ -8,4 +8,12 @@ router.use('/user', userRoutes);
 const waterRoutes = require('./water-routes');
 router.use('/water', waterRoutes);
 
+// Routing for /api/calorie/ HTML request
+const calorieRoutes = require('./calorie-routes');
+router.use('/calorie', calorieRoutes);
+
+// Routing for /api/exercise/ HTML request
+const exerciseRoutes = require('./exercise-routes');
+router.use('/exercise', exerciseRoutes);
+
 module.exports = router;
