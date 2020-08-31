@@ -1,10 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Health-Tracker</title>
+  </head>
 
+  
+  <body>
+    <!--Header section begins-->
+    <header>
+      <h1>
+              <a href="./index.html">Health-Tracker</a>
+      </h1>
+  
+    </header>
+    <div class="container">
+      <div class="section">
+        <!--   main body begins   -->
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center red-text"><i class="material-icons">directions_run</i></h2>
+              <h5 class="center">Running</h5>
+              <div class="row">
+                <div class="col s12 l6">
+                  <form id="city-form" class="input-field">
+                    <label for="Running Miles">Number of Miles</label>
+                    <input placeholder="Miles" id="miles-input" type="text" class="validate right-align">
+                    <button class="btn right light-blue waves-effect lighhwaves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+  
+                  </form>
+                </div>
+                <div class="col l6 s12">
+                  <h6 class="light">Showing Results For:</h6>
+                  <div id="miles-run"></div>
+                </div>
+              </div>
+              <div class="row">
+                <a class='dropdown-trigger btn light-blue' href='#' data-target='previous-searches'>Previous Searches</a>
+                <ul id='previous-searches' class='dropdown-content'></ul>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">directions_walk</i></h2>
+              <h5 class="center">Walking</h5>
+              <div class="light" id='Walking'></div>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">transfer_within_a_station</i></h2>
+              <h5 class="center">Hiking</h5>
+              <div id="covid-results">
+                <p class="light center">Hiking</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -26,7 +88,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Starter Template</h1>
+      <h1 class="header center orange-text">Health-Tracker</h1>
       <div class="row center">
         <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
       </div>
