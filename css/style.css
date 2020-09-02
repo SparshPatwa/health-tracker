@@ -1,14 +1,19 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
-.icon-block {
-  padding: 0 15px;
+.todo-list {
+  margin: 0 auto;
+  margin-top: 75px;
 }
-.icon-block .material-icons {
-	font-size: inherit;
+
+input.new-item:focus {
+  outline: none;
+}
+
+.list-group-item > button.delete,
+.list-group-item > button.complete {
+  float: right;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.edit {
+  width: 100%;
 }
