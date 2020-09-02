@@ -48,7 +48,7 @@ app.set('view engine', 'handlebars');
 app.use(routes);
 
 // Connect to DB and then start SERVER
-const PORT = process.env.PORTNUM || 3001;
+const PORT = process.env.PORT || 3001;
 sequelize.sync({ force: false }).then(() =>
 {
     app.listen(PORT, () => {
