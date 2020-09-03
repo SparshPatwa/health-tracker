@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../util/connect');
 
-class Water extends Model { }
+class Water extends Model {}
 
-Water.init(
-{
+Water.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -33,16 +32,15 @@ Water.init(
     },
     record_date: {
         type: DataTypes.DATEONLY,
+        defaultValue: Date.now,
         allowNull: false
     }
-},
-{
+}, {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'water'
-}
-);
+});
 
 module.exports = Water;
