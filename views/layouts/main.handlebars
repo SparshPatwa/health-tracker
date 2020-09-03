@@ -1,13 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Health TrackIt</title>
-        <link rel="stylesheet" href="stylesheet/styling.css">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health TrackIt</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="stylesheet/styling.css" />
+</head>
+
+<body>
+    {{#unless loggedIn}}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Health Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/about">About<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/team">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">login</a>
+                </li>
+            </ul>
+
+            <!--button class="btn btn-outline-success my-2 my-sm-0" onclick="logout()">Logout</button-->
+
+        </div>
+    </nav>
+    {{/unless}}
+    {{#if loggedIn}}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Health Tracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/accountinfo">Account Information</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/save-goal">Save Goals</a>
+                </li>
+
+            </ul>
+
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="logout()">Logout</button>
+
+        </div>
+    </nav>
+    {{/if}}
     <main>
-        <a href="/">Home</a>
         {{{ body }}}
     </main>
+    <script src="jquery/jquery.js"></script>
+    <script src="popper/popper.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="javascript/accountActions.js"></script>
+</body>
+
 </html>

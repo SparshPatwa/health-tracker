@@ -1,24 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-
 header {
-    margin-left:  20;
-      background-color:  #A8ADBA
-    font-family:  'Open Sans', sans-serif;
-    }
-    body {
-        background-color: aquamarine;
-        margin-left: 20;
-        text-justify: auto;
-        padding:  20;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    h1 {
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-font-size: 50px
-;
-    }
-    
+    margin-left: 20;
+    background-color: #A8ADBA;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body>main {
+    height: 100vh;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+}
+
+#about {
+    background-image: url('../assets/img/about.jpg');
+    height: 50%;
+    background-repeat: no-repeat;
+    background-position-y: 25%;
+    background-size: cover;
+    font-size: 20px;
+}
+
+#about>#header {
+    background-color: rgba(0, 0, 0, .4);
+    color: white;
+}
+
+#about>#header li {
+    margin-bottom: 1em;
+    background-color: rgba(255, 255, 255, .5);
+    list-style: none;
+    text-align: center;
+    padding: 15px;
+}
+
+#about>#header #title {
+    background-color: rgba(255, 255, 255, .5);
+    color: black;
 }
