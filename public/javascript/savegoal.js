@@ -101,7 +101,7 @@ async function getGoals() {
     }
 
     console.log("calor", data)
-        // get data for exercisef
+        // get data for exercise
     try {
 
         response = await fetch('/api/exercise');
