@@ -70,7 +70,7 @@ if (activityform) activityform.addEventListener('submit', activityFormHandler);
 
 async function dashboardFormHandler(event) {
     event.preventDefault();
-    const dashboarddate = document.querySelector('#dashboardDate').value.trim();
+    const dashboarddate = document.querySelector('#dashboardDate').value;
     console.log = document.querySelector("#dashBoardDate")
     var date = document.getElementById("date");
     var water = document.getElementById("water");
