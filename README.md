@@ -27,7 +27,8 @@
 This application is covered by the MIT license. 
 
 ## Contributing
-👪 
+👪 Sparsh Patwa  
+👪 Army David  
 
 ## Tests
 ✏️ 
@@ -35,6 +36,6 @@ This application is covered by the MIT license.
 ## Questions
 ✋ <br />
 <br />
-:octocat: Find me on GitHub: [](https://github.com/)<br />
+:octocat: Find me on GitHub: [Sparsh Patwa](https://github.com/SparshPatwa)<br />
 <br />
 ✉️ Email me with any questions: <br /><br />
