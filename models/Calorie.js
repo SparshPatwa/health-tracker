@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../util/connect');
 
-class Calorie extends Model { }
+class Calorie extends Model {}
 
-Calorie.init(
-{
+Calorie.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -33,16 +32,15 @@ Calorie.init(
     },
     record_date: {
         type: DataTypes.DATEONLY,
+        defaultValue: Date.now,
         allowNull: false
     }
-},
-{
+}, {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'calorie'
-}
-);
+});
 
 module.exports = Calorie;

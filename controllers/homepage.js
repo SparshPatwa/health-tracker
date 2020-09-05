@@ -40,6 +40,9 @@ router.get('/save-goal', (req, res) => {
 });
 
 router.get('/userhome', (req, res) => {
+    if (!req.session.loggedIn) {
+        return res.redirect('/')
+    }
     res.render('userhome', {
         loggedIn: true
     });

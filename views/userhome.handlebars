@@ -1,34 +1,53 @@
-<form class="activityForm">
-    <h2>Enter Daily Activity</h2>
-    <div>
-        <label for="activityDate">Date(YYYY-MM-DD):</label>
-        <input type="text" id="activityDate" />
-    </div>
-    <div>
-        <label for="waterIntake">Water Consumed(oz):</label>
-        <input type="text" id="waterIntake" />
-    </div>
-    <div>
-        <label for="calorieIntake">Food Consumed(calories):</label>
-        <input type="text" id="calorieIntake" />
-    </div>
-    <div>
-        <label for="exerciseIntake">Workout(calorie):</label>
-        <input type="text" id="exerciseIntake" />
-    </div>
-    <div>
-        <button type="submit">Save</button>
-    </div>
-</form>
-<form class="dashboardForm">
-    <h2>Display Activity Statistics</h2>
-    <div>
-        <label for="activityDate">Date(YYYY-MM-DD):</label>
-        <input type="text" id="activityDate" />
-    </div>
-    <div>
-        <button type="submit">Display</button>
-    </div>
-</form>
-<script src="javascript/userhome.js"></script>
-<script src="javascript/accountActions.js"></script>
+<div class="container h-75 w-50">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+        <form class="activityForm w-100">
+            <h2>Enter Daily Activity</h2>
+            <div class="form-group d-flex justify-content-between">
+                <label class="w-25" for="waterIntake">Water Consumed(oz):</label>
+                <div class="d-flex w-75">
+                    <input class="form-control h-100 w-25 ml-1 mr-1" type="text" id="waterIntake" name="oz-intake"
+                        style="display: inline-block; height: 100%;" />
+                    <input class="form-control h-100 w-50 ml-1 mr-1" type="date" id="waterIntakeDate" name="oz-intake-date" />
+                    <button id="oz_intake"class="btn btn-success w-25" type="submit">Track</button>
+                </div>
+
+            </div>
+            <div class="form-group d-flex justify-content-between">
+                <label class="w-25" for="calorieIntake">Food Consumed(calories):</label>
+                <div class="d-flex w-75">
+                    <input class="form-control h-100 w-25 m1-1 mr-1" type="text" id="calorieIntake" name="calorie-intake"
+                        style="display: inline-block; height: 100%;" />
+                    <input class="form-control h-100 w-50 m1-1 mr-1" type="date" id="calorieIntakeDate" name="calorie-intake-date"/>
+                    <button id="calorie_intake" class="btn btn-success w-25" type="submit">Track</button>
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-between">
+                <label class"w-25" for="exerciseIntake">Workout(calorie):</label>
+                <div class="d-flex w-75">
+                <input class="form-control h-100 w-25 m1-1 mr-1" type="text" id="exerciseIntake" name="calorie-outake"
+                    style="display: inline-block; height: 100%;" />
+                <input class="form-control h-100 w-50 m1-1 mr-1" type="date" id="exerciseIntakeDate" name="calorie-outake-date"/>
+                <button id="calorie_outake" class="btn btn-success w-25" type="submit">Track</button>
+                </div>
+            </div>
+        </form> 
+        <form class="dashboardForm w-100">
+            <h2>Display Activity Statistics</h2>
+            <div class="form-group">
+                <input class="form-control" type="date" id="activityDate" name="activity-date" />
+            </div>
+            <div class="text-right">
+                <button id="displayActivities" class="btn btn-success" type="submit">Display</button>
+            </div>
+        </form>
+        <div class="container">
+            <div id="chartContainer"></div>
+        </div>
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="javascript/activityActions.js"></script>
+        <script src="javascript/userhome.js"></script>
+        <script src="javascript/accountActions.js"></script>

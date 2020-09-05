@@ -17,7 +17,13 @@ router.post('/', (req, res) => {
 });
 // Get water tracking achievement/goal data for all users
 router.get('/', (req, res) => {
+    let query = req.query;
+    console.log("query", query)
     Water.findAll({
+            where: {
+                user_id: req.session.user_id,
+                ...query
+            },
             include: [{ model: User, attributes: ['username'] }]
         })
         .then(dbPostData => res.json(dbPostData))
