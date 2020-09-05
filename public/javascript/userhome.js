@@ -70,8 +70,8 @@ if (activityform) activityform.addEventListener('submit', activityFormHandler);
 
 async function dashboardFormHandler(event) {
     event.preventDefault();
-    const dashboarddate = document.querySelector('#dashboardDate').value;
-    console.log = document.querySelector("#dashBoardDate")
+    //const dashboarddate = document.querySelector('#dashBoardDate').value.trim();
+
     var date = document.getElementById("date");
     var water = document.getElementById("water");
     var exercise = document.getElementById("exercise");
@@ -79,6 +79,15 @@ async function dashboardFormHandler(event) {
     var watergoal = document.getElementById("watergoal");
     var exercisegoal = document.getElementById("exercisegoal");
     var caloriegoal = document.getElementById("caloriegoal");
+
+    date.innerHTML = "";
+    water.innerHTML = "";
+    exercise.innerHTML = "";
+    calorie.innerHTML = "";
+    watergoal.innerHTML = "";
+    exercisegoal.innerHTML = "";
+    caloriegoal.innerHTML = "";
+
     if (dashboarddate) {
         date.innerHTML = "Dispalying Your Activity for " + dashboarddate;
         // Call controller for Water table
@@ -155,5 +164,5 @@ async function dashboardFormHandler(event) {
         alert("Please enter a Date to view your Activity");
     }
 }
-var dashboardform = document.querySelector('.dashboardForm')
-if (dashboardform) dashboardform.addEventListener('submit', dashboardFormHandler);
+//var dashboardform = document.querySelector('.dashboardForm')
+//if (dashboardform) dashboardform.addEventListener('submit', dashboardFormHandler);
