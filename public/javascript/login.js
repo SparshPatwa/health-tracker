@@ -43,7 +43,7 @@ async function loginFormHandler(event) {
             debugger
             idleLogout();
         } else {
-            alert(response.statusText);
+            alert("Incorrect Email Address or Password");
         }
     } else {
         alert("Please fill entire Login Form")     

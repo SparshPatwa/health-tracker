@@ -12,5 +12,15 @@ async function logout() {
 }
 
 async function deleteAccount() {
-    console.log("Not Implemented");
+    /*
+    const response = await fetch('/api/user/', {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert(response.statusText);
+    }
+    */
 }

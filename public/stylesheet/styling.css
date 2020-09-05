@@ -40,6 +40,8 @@ h1 {
     color: black;
 }
 
+html,
+body,
 main {
     background-color: #a3bf45;
 }

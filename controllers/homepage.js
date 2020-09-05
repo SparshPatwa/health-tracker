@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Water } = require('../models');
 
 // `/` HTML request endpoint
 

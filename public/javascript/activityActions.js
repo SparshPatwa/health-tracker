@@ -128,7 +128,7 @@ async function getGoals() {
 
     for (let i = 0; i < data.length; i++) {
         let w = data[i];
-        json['oz_intake'].push(w.calorie_outake);
+        json['oz_intake'].push(w.oz_intake);
     }
 
     console.log("goals water data", data)
@@ -173,8 +173,6 @@ async function getGoals() {
         json['calorie_outake'].push(w.calorie_outake);
     }
 
-    console.log("calorie_outake goals data", data)
-    console.log("constructed json goals", json)
     return json;
 }
 
@@ -248,9 +246,7 @@ async function getActivities() {
     }
 
     let g = await getGoals();
-    console.log(g)
-    console.log("calorie_outake data", data)
-    console.log("constructed json", json)
+
     return {
         goals: g,
         activities: json
@@ -258,74 +254,74 @@ async function getActivities() {
 }
 
 getActivities().then(data => {
-    console.log("data points", data)
+    console.log("the data", data)
+    let keys = Object.keys(data.goals);
+    for (let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        createHighChartScatter({ goals: data.goals[key], activities: data.activities[key], title: key });
+    }
 
-    createHighChartScatter({ goals: data.goals.calorie_intake, activities: data.activities.calorie_intake });
 });
 
-function createHighChartScatter({ goals, activities }) {
-    Highcharts.chart('chartContainer', {
-
+function createHighChartScatter({ goals, activities, title }) {
+    console.log("goals", goals)
+    console.log("activities", activities)
+    Highcharts.chart(`${title}_chart`, {
+        chart: {
+            type: 'bar'
+        },
         title: {
-            text: 'Goal Trends'
+            text: title
         },
-
         subtitle: {
-            text: 'Two lines: Calorie In-Take Goal Compared with Calorie In-Take Activity'
+            text: 'Source: Actuals vs Goals</a>'
         },
-
-        yAxis: {
-            title: {
-                text: 'Calorie'
-            }
-        },
-
         xAxis: {
+            //categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
             title: {
-                text: 'Todays Date'
-            },
-            accessibility: {
-                rangeDescription: 'Range: 1-31'
+                text: null
             }
         },
-
+        yAxis: {
+            min: 0,
+            title: {
+                text: `Goals (${title})`,
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
         legend: {
             layout: 'vertical',
             align: 'right',
-            verticalAlign: 'middle'
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+            shadow: true
         },
-
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                pointStart: 1
-            }
+        credits: {
+            enabled: false
         },
-
         series: [{
-            name: 'Goals Intake',
-            data: goals //[43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+            name: 'Goal (Oz)',
+            data: [goals.reduce((a, b) => a + b)]
         }, {
-            name: 'Activities Calorie Intake ',
-            data: activities //[24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-        }],
-
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-
+            name: 'Activity (oz)',
+            data: [activities.reduce((a, b) => a + b)]
+        }]
     });
 }

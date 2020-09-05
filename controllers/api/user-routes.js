@@ -4,8 +4,12 @@ const authenticate = require('../../util/authenticate');
 
 // `/api/user` HTML request endpoint
 
-// Get all users, endpoint=/api/user/
+// Get all users, admin use only
 router.get('/', (req, res) => {
+    if (!req.session.loggedIn || req.session.id != 1) {
+        res.redirect('/');
+        return;
+    }
     User.findAll({
             attributes: { exclude: ['password'] }
         })
@@ -16,8 +20,12 @@ router.get('/', (req, res) => {
         });
 });
 
-// Get user by id, endpoint=/api/user/:id/
+// Get user by id, admin use only
 router.get('/:id', (req, res) => {
+    if (!req.session.loggedIn || req.session.id != 1) {
+        res.redirect('/');
+        return;
+    }
     User.findOne({
             where: { id: req.params.id },
             attributes: { exclude: ['password', 'id'] }
@@ -31,6 +39,10 @@ router.get('/:id', (req, res) => {
 
 // Delete a user by id
 router.delete('/:id', authenticate, (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
     User.destroy({
             where: { id: req.params.id },
         })
