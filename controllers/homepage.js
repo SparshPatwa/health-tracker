@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Water } = require('../models');
 
 // `/` HTML request endpoint
 
@@ -27,7 +27,7 @@ router.get('/accountinfo', (req, res) => {
     res.redirect('/');
     return;
   }
-  // Render accountinfo page with user information ussing user id saved in session
+  // Render accountinfo page with user information ussing user id saved in session.
   User.findOne({
     where: { id: req.session.user_id },
     attributes: { exclude: ['password', 'id'] }

@@ -3,6 +3,10 @@
 <form class="goalForm">
     <h2>Save Health Goals</h2>
     <div>
+        <label for="goalDate">Date(YYYY-MM-DD):</label>
+        <input type="text" id="goalDate" />
+    </div>
+    <div>
         <label for="waterGoal">Daily Water Goal(oz):</label>
         <input type="text" id="waterGoal" />
     </div>
@@ -43,12 +47,23 @@
 <form class="dashboardForm">
     <h2>Display Activity Statistics</h2>
     <div>
-        <label for="activityDate">Date(YYYY-MM-DD):</label>
-        <input type="text" id="activityDate" />
+        <label for="dashboardDate">Date(YYYY-MM-DD):</label>
+        <input type="text" id="dashboardDate" />
     </div>
     <div>
         <button type="submit">Display</button>
     </div>
 </form>
+<p id="date"></p>
+
+<p id="water"></p>
+<p id="watergoal"></p>
+
+<p id="exercise"></p>
+<p id="exercisegoal"></p>
+
+<p id="calorie"></p>
+<p id="caloriegoal"></p>
+
 <script src="/javascript/userhome.js"></script>
 <script src="/javascript/accountActions.js"></script>
