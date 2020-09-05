@@ -27,8 +27,21 @@ document.querySelector('#oz_intake').addEventListener('click', async function(e)
         console.log(err)
     }
 
+    let tr = document.querySelector('#tracksuccess');
+    tr.classList.remove('d-none')
+    tr.classList.add('d-flex')
+    setTimeout(function() {
+        document.querySelector('input[name="oz-intake"]').value = ""
+        document.querySelector('input[name="oz-intake-date"]').value = "";
+        tr.classList.remove('d-flex')
+        tr.classList.add('d-none');
+    }, 1000)
     console.log("Water tracked", data)
+
+
+
 })
+
 document.querySelector('#calorie_intake').addEventListener('click', async function(e) {
     e.preventDefault();
     let calorie_intake = document.querySelector('input[name="calorie-intake"]').value;
@@ -57,6 +70,15 @@ document.querySelector('#calorie_intake').addEventListener('click', async functi
     }
 
     console.log("Calorie-intake tracked", data)
+    let tr = document.querySelector('#tracksuccess');
+    tr.classList.remove('d-none')
+    tr.classList.add('d-flex')
+    setTimeout(function() {
+        document.querySelector('input[name="calorie-intake"]').value = ""
+        document.querySelector('input[name="calorie-intake-date"]').value = "";
+        tr.classList.remove('d-flex')
+        tr.classList.add('d-none');
+    }, 1000)
 })
 document.querySelector('#calorie_outake').addEventListener('click', async function(e) {
     e.preventDefault();
@@ -86,6 +108,15 @@ document.querySelector('#calorie_outake').addEventListener('click', async functi
     }
 
     console.log("Calorie-outake tracked", data)
+    let tr = document.querySelector('#tracksuccess');
+    tr.classList.remove('d-none')
+    tr.classList.add('d-flex')
+    setTimeout(function() {
+        document.querySelector('input[name="calorie-outake"]').value = ""
+        document.querySelector('input[name="calorie-outake-date"]').value = "";
+        tr.classList.remove('d-flex')
+        tr.classList.add('d-none');
+    }, 1000)
 })
 
 function formatDate(date) {
@@ -178,10 +209,9 @@ async function getGoals() {
 
 
 
-async function getActivities() {
+async function getActivities(date = new Date(), initial = true) {
     let response;
     let data;
-    let date = new Date()
     let calendar = document.querySelector('input[name="activity-date"]');
     let json = {
         "oz_intake": [],
@@ -189,7 +219,10 @@ async function getActivities() {
         "calorie_outake": []
     }
     console.log(formatDate(date));
-    calendar.value = formatDate(date);
+    if (initial) {
+        calendar.value = formatDate(date);
+    }
+
     // call for water
     try {
         response = await fetch(`/api/water?track_type=1&record_date=${date}`);
@@ -318,10 +351,26 @@ function createHighChartScatter({ goals, activities, title }) {
         },
         series: [{
             name: 'Goal (Oz)',
-            data: [goals.reduce((a, b) => a + b)]
+            data: [goals.reduce((a, b) => a + b, 0)]
         }, {
             name: 'Activity (Oz)',
-            data: [activities.reduce((a, b) => a + b)]
+            data: [activities.reduce((a, b) => a + b, 0)]
         }]
     });
 }
+
+document.querySelector('#displayActivities').addEventListener('click', async function(e) {
+    e.preventDefault();
+    let date = document.querySelector('input[name="activity-date"]').value;
+    getActivities(date, false).then(data => {
+        console.log("the data", data)
+        let keys = Object.keys(data.goals);
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i];
+            createHighChartScatter({ goals: data.goals[key], activities: data.activities[key], title: key });
+        }
+
+    });
+
+    console.log("getctivites complete")
+})
