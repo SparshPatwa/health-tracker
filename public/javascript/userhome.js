@@ -78,6 +78,15 @@ async function dashboardFormHandler(event) {
     var watergoal       = document.getElementById("watergoal");
     var exercisegoal    = document.getElementById("exercisegoal");
     var caloriegoal     = document.getElementById("caloriegoal");
+
+    date.innerHTML = "";
+    water.innerHTML = "";
+    exercise.innerHTML = "";
+    calorie.innerHTML = "";
+    watergoal.innerHTML = "";
+    exercisegoal.innerHTML = "";
+    caloriegoal.innerHTML = "";
+
     if (dashboarddate) {
         date.innerHTML = "Dispalying Your Activity for "+dashboarddate;
         // Call controller for Water table
