@@ -320,7 +320,7 @@ function createHighChartScatter({ goals, activities, title }) {
             name: 'Goal (Oz)',
             data: [goals.reduce((a, b) => a + b)]
         }, {
-            name: 'Activity (oz)',
+            name: 'Activity (Oz)',
             data: [activities.reduce((a, b) => a + b)]
         }]
     });
