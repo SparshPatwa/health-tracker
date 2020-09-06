@@ -46,7 +46,7 @@ document.querySelector('#calorie_intake').addEventListener('click', async functi
     e.preventDefault();
     let calorie_intake = document.querySelector('input[name="calorie-intake"]').value;
     let calorie_intake_date = document.querySelector('input[name="calorie-intake-date"]').value;
-    console.log("calorie", calorie_intake_);
+    console.log("calorie", calorie_intake);
     console.log("calorie_date", calorie_intake_date)
     let response;
     let data;
@@ -190,7 +190,7 @@ async function getGoals() {
 
 
 
-    // call for exzervcise
+    // call for exervcise
     try {
         response = await fetch(`/api/exercise?track_type=0`);
     } catch (err) {
@@ -265,7 +265,7 @@ async function getActivities(date = new Date(), initial = true) {
 
 
 
-    // call for exzervcise
+    // call for exercise
     try {
         response = await fetch(`/api/exercise?track_type=1&record_date=${date}`);
     } catch (err) {
@@ -303,12 +303,17 @@ getActivities().then(data => {
 function createHighChartScatter({ goals, activities, title }) {
     console.log("goals", goals)
     console.log("activities", activities)
+    let titleMap = {
+        'oz_intake': 'Water',
+        'calorie_intake': 'Food',
+        'calorie_outake': 'Exercise'
+    }
     Highcharts.chart(`${title}_chart`, {
         chart: {
             type: 'bar'
         },
         title: {
-            text: title
+            text: titleMap[title]
         },
         subtitle: {
             text: 'Source: Actuals vs Goals</a>'
