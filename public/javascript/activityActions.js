@@ -1,126 +1,113 @@
+const debugON = 1;
 document.querySelector('#oz_intake').addEventListener('click', async function(e) {
     e.preventDefault();
     let oz_intake = document.querySelector('input[name="oz-intake"]').value;
     let oz_intake_date = document.querySelector('input[name="oz-intake-date"]').value;
-    console.log("oz", oz_intake);
-    console.log("oz_date", oz_intake_date)
+    if(debugON)
+        console.log("oz", oz_intake);
+    if(debugON)
+        console.log("oz_date", oz_intake_date)
     let response;
     let data;
-    try {
-        response = await fetch('/api/water', {
-            method: 'POST',
-            body: JSON.stringify({
-                oz_intake: oz_intake,
-                record_date: oz_intake_date,
-                track_type: 1
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-    } catch (err) {
-        console.log(err)
+
+    if (oz_intake_date && oz_intake) {
+        try {
+            response = await fetch('/api/water/trackcreate/'+oz_intake_date+'/'+oz_intake)
+        } catch (err) {
+            console.log(err)
+        }
+        try {
+            data = await response.json();
+        } catch (err) {
+            console.log(err)
+        }
+        let tr = document.querySelector('#tracksuccess');
+        tr.classList.remove('d-none')
+        tr.classList.add('d-flex')
+        setTimeout(function() {
+            document.querySelector('input[name="oz-intake"]').value = ""
+            document.querySelector('input[name="oz-intake-date"]').value = "";
+            tr.classList.remove('d-flex')
+            tr.classList.add('d-none');
+        }, 1000)
+        if(debugON)
+            console.log("Water tracked", data)
+    } else {
+        alert("Please enter the Date and Water intake that you'd like to track");
     }
-    try {
-        data = await response.json();
-    } catch (err) {
-        console.log(err)
-    }
-
-    let tr = document.querySelector('#tracksuccess');
-    tr.classList.remove('d-none')
-    tr.classList.add('d-flex')
-    setTimeout(function() {
-        document.querySelector('input[name="oz-intake"]').value = ""
-        document.querySelector('input[name="oz-intake-date"]').value = "";
-        tr.classList.remove('d-flex')
-        tr.classList.add('d-none');
-    }, 3000)
-    console.log("Water tracked", data)
-
-
-
 })
 
 document.querySelector('#calorie_intake').addEventListener('click', async function(e) {
     e.preventDefault();
     let calorie_intake = document.querySelector('input[name="calorie-intake"]').value;
     let calorie_intake_date = document.querySelector('input[name="calorie-intake-date"]').value;
-    console.log("calorie", calorie_intake);
-    console.log("calorie_date", calorie_intake_date)
+    if(debugON)
+        console.log("calorie", calorie_intake);
+    if(debugON)
+        console.log("calorie_date", calorie_intake_date)
     let response;
     let data;
-    try {
-        response = await fetch('/api/calorie', {
-            method: 'POST',
-            body: JSON.stringify({
-                calorie_intake: calorie_intake,
-                record_date: calorie_intake_date,
-                track_type: 1
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-    } catch (err) {
-        console.log(err)
+    if (calorie_intake && calorie_intake_date) {
+        try {
+            response = await fetch('/api/calorie/trackcreate/' + calorie_intake_date + '/' + calorie_intake)
+        } catch (err) {
+            console.log(err)
+        }
+        try {
+            data = await response.json();
+        } catch (err) {
+            console.log(err)
+        }
+        if(debugON)
+            console.log("Calorie-intake tracked", data)
+        let tr = document.querySelector('#tracksuccess');
+        tr.classList.remove('d-none')
+        tr.classList.add('d-flex')
+        setTimeout(function() {
+            document.querySelector('input[name="calorie-intake"]').value = "";
+            document.querySelector('input[name="calorie-intake-date"]').value = "";
+            tr.classList.remove('d-flex')
+            tr.classList.add('d-none');
+        }, 1000)
+    } else {
+        alert("Please enter the Date and Food Calories consumed that you'd like to track");
     }
-    try {
-        data = await response.json();
-    } catch (err) {
-        console.log(err)
-    }
-
-    console.log("Calorie-intake tracked", data)
-    let tr = document.querySelector('#tracksuccess');
-    tr.classList.remove('d-none')
-    tr.classList.add('d-flex')
-    setTimeout(function() {
-        document.querySelector('input[name="calorie-intake"]').value = ""
-        document.querySelector('input[name="calorie-intake-date"]').value = "";
-        tr.classList.remove('d-flex')
-        tr.classList.add('d-none');
-    }, 1000)
 })
 document.querySelector('#calorie_outake').addEventListener('click', async function(e) {
     e.preventDefault();
     let calorie_outake = document.querySelector('input[name="calorie-outake"]').value;
-    let calorie_outake_date = document.querySelector('input[name="calorie-outake-date"]').value;    
-    console.log("calorie",  calorie_outake);    
-    console.log("calorie_date",  calorie_outake_date)
+    let calorie_outake_date = document.querySelector('input[name="calorie-outake-date"]').value;
+    if(debugON) 
+        console.log("calorie",  calorie_outake); 
+    if(debugON)   
+        console.log("calorie_date",  calorie_outake_date)
     let response;
     let data;
-    try {
-        response = await fetch('/api/exercise', {
-            method: 'POST',
-            body: JSON.stringify({
-                calorie_outake: calorie_outake,
-                record_date: calorie_outake_date,
-                track_type: 1
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-    } catch (err) {
-        console.log(err)
+    if (calorie_outake && calorie_outake_date) {
+        try {
+            response = await fetch('/api/exercise/trackcreate/' +  calorie_outake_date + '/' +  calorie_outake)
+        } catch (err) {
+            console.log(err)
+        }
+        try {
+            data = await response.json();
+        } catch (err) {
+            console.log(err)
+        }
+        if(debugON)
+            console.log("Calorie-outake tracked", data)
+        let tr = document.querySelector('#tracksuccess');
+        tr.classList.remove('d-none')
+        tr.classList.add('d-flex')
+        setTimeout(function() {
+            document.querySelector('input[name="calorie-outake"]').value = ""
+            document.querySelector('input[name="calorie-outake-date"]').value = "";
+            tr.classList.remove('d-flex')
+            tr.classList.add('d-none');
+        }, 1000)
+    } else {
+        alert("Please enter the Date and Exercise calories Burnt that you'd like to track");
     }
-    try {
-        data = await response.json();
-    } catch (err) {
-        console.log(err)
-    }
-
-    console.log("Calorie-outake tracked", data)
-    let tr = document.querySelector('#tracksuccess');
-    tr.classList.remove('d-none')
-    tr.classList.add('d-flex')
-    setTimeout(function() {
-        document.querySelector('input[name="calorie-outake"]').value = ""
-        document.querySelector('input[name="calorie-outake-date"]').value = "";
-        tr.classList.remove('d-flex')
-        tr.classList.add('d-none');
-    }, 1000)
 })
 
 function formatDate(date) {

@@ -3,34 +3,20 @@ const { User, Water } = require('../../models');
 
 // `/api/water` HTML request endpoint
 
-
-router.post('/', (req, res) => {
-    let water = req.body;
-    console.log(water)
-    water.user_id = req.session.user_id;
-    Water.create(water)
-        .then(wtr => res.json(wtr))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-// Get water tracking achievement/goal data for all users
+// Get water tracking data for all users, admin use only
 router.get('/', (req, res) => {
-    let query = req.query;
-    console.log("query", query)
+    if (!req.session.loggedIn || req.session.user_id != 1) {
+        res.redirect('/');
+        return;
+    }
     Water.findAll({
-            where: {
-                user_id: req.session.user_id,
-                ...query
-            },
-            include: [{ model: User, attributes: ['username'] }]
-        })
-        .then(dbPostData => res.json(dbPostData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+        include: [{ model: User, attributes: ['username'] }]
+    })
+    .then(waterData => res.json(waterData))
+    .catch(err => {
+          console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 // Get water tracking goal data for user
@@ -40,14 +26,14 @@ router.get('/goal', (req, res) => {
         return;
     }
     Water.findOne({
-            where: { user_id: req.session.user_id, track_type: 0 },
-            include: { model: User, attributes: ['username'] }
-        })
-        .then(waterData => res.json(waterData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+        where: { user_id: req.session.user_id, track_type: 0 },
+        include: { model: User, attributes: ['username'] }
+    })
+    .then(waterData => res.json(waterData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 // Get water tracking achievement data for user
@@ -57,14 +43,14 @@ router.get('/achievements', (req, res) => {
         return;
     }
     Water.findAll({
-            where: { user_id: req.session.user_id, track_type: 1 },
-            include: { model: User, attributes: ['username'] }
-        })
-        .then(waterData => res.json(waterData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+        where: { user_id: req.session.user_id, track_type: 1 },
+        include: { model: User, attributes: ['username'] }
+    })
+    .then(waterData => res.json(waterData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 // Get water tracking achievement data for user by date
@@ -74,40 +60,40 @@ router.get('/achievement/:date', (req, res) => {
         return;
     }
     Water.findOne({
-            where: { user_id: req.session.user_id, track_type: 1, record_date: req.params.date },
-            include: { model: User, attributes: ['username'] }
-        })
-        .then(waterData => res.json(waterData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+        where: { user_id: req.session.user_id, track_type: 1, record_date: req.params.date },
+        include: { model: User, attributes: ['username'] }
+    })
+    .then(waterData => res.json(waterData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
 });
 
 router.get('/trackcreate/:date/:oz', (req, res) => {
     Water.create({
-            oz_intake: req.params.oz,
-            user_id: req.session.user_id,
-            track_type: 1,
-            record_date: req.params.date
-        })
-        .then(waterData => res.json(waterData))
-        .catch(err => {
-            res.status(500).json(err);
-        });
+        oz_intake: req.params.oz,
+        user_id: req.session.user_id,
+        track_type: 1,
+        record_date: req.params.date
+    })
+    .then(waterData => res.json(waterData))
+    .catch(err => {
+        res.status(500).json(err);
+    });
 });
 
 router.get('/goalcreate/:date/:oz', (req, res) => {
     Water.create({
-            oz_intake: req.params.oz,
-            user_id: req.session.user_id,
-            track_type: 0,
-            record_date: req.params.date
-        })
-        .then(waterData => res.json(waterData))
-        .catch(err => {
-            res.status(500).json(err);
-        });
+        oz_intake: req.params.oz,
+        user_id: req.session.user_id,
+        track_type: 0,
+        record_date: req.params.date
+    })
+    .then(waterData => res.json(waterData))
+    .catch(err => {
+        res.status(500).json(err);
+    });
 });
 /*
 router.put('/trackupdate/:date/:oz', (req, res) => {

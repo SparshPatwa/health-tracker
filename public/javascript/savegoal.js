@@ -1,49 +1,25 @@
 document.querySelector("#saveGoal").addEventListener('click', function(e) {
     e.preventDefault();
+    let goaldate = document.querySelector('input[name="goal-date"]').value;
     let watergoal = document.querySelector('input[name="water-goal"]').value;
     let calgoal = document.querySelector('input[name="calorie-goal"]').value;
     let exercisegoal = document.querySelector('input[name="exercise-goal"]').value;
     console.log("water", watergoal, calgoal, exercisegoal);
 
-    fetch('/api/water/', {
-            method: 'POST',
-            body: JSON.stringify({
-                oz_intake: watergoal
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-
-        })
+    fetch('/api/water/goalcreate/' + goaldate + '/' + watergoal)
         .then(response => {
             return response.json();
         })
         .then(d => {
             console.log(d);
             // call to calori
-            fetch('/api/calorie', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        calorie_intake: calgoal
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+            fetch('/api/calorie/goalcreate/' + goaldate + '/' + calgoal)
                 .then(responseCal => {
                     return responseCal.json();
                 })
                 .then(dCal => {
                     console.log("Calorie", dCal);
-                    fetch('/api/exercise', {
-                            method: "POST",
-                            body: JSON.stringify({
-                                calorie_outake: exercisegoal
-                            }),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
+                    fetch('/api/exercise/goalcreate/' + goaldate + '/' + exercisegoal)
                         .then(respExercise => {
                             return respExercise.json();
                         })
