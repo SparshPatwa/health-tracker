@@ -35,7 +35,7 @@ document.querySelector('#oz_intake').addEventListener('click', async function(e)
         document.querySelector('input[name="oz-intake-date"]').value = "";
         tr.classList.remove('d-flex')
         tr.classList.add('d-none');
-    }, 1000)
+    }, 3000)
     console.log("Water tracked", data)
 
 
