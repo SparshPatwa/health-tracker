@@ -150,7 +150,7 @@ async function getGoals() {
 
     // call for water
     try {
-        response = await fetch(`/api/water?track_type=0`);
+        response = await fetch(`/api/water/goal`);
     } catch (err) {
         console.log(err)
     }
@@ -161,16 +161,15 @@ async function getGoals() {
         console.log(err)
     }
 
-    for (let i = 0; i < data.length; i++) {
-        let w = data[i];
-        json['oz_intake'].push(w.oz_intake);
-    }
+
+    json['oz_intake'].push(data.oz_intake);
+
 
     console.log("goals water data", data)
 
     // call for calorie
     try {
-        response = await fetch(`/api/calorie?track_type=0`);
+        response = await fetch(`/api/calorie/goal`);
     } catch (err) {
         console.log(err)
     }
@@ -181,10 +180,9 @@ async function getGoals() {
         console.log(err)
     }
 
-    for (let i = 0; i < data.length; i++) {
-        let w = data[i];
-        json['calorie_intake'].push(w.calorie_intake);
-    }
+
+    json['calorie_intake'].push(data.calorie_intake);
+
 
     console.log("goals calorie intake data", data)
 
@@ -192,7 +190,7 @@ async function getGoals() {
 
     // call for exervcise
     try {
-        response = await fetch(`/api/exercise?track_type=0`);
+        response = await fetch(`/api/exercise/goal`);
     } catch (err) {
         console.log(err)
     }
@@ -203,11 +201,8 @@ async function getGoals() {
         console.log(err)
     }
 
-    for (let i = 0; i < data.length; i++) {
-        let w = data[i];
-        json['calorie_outake'].push(w.calorie_outake);
-    }
 
+    json['calorie_outake'].push(data.calorie_outake)
     return json;
 }
 

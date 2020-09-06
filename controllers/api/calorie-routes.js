@@ -42,7 +42,7 @@ router.get('/goal', (req, res) => {
         return;
     }
     Calorie.findOne({
-            where: { user_id: req.params.id, track_type: 0 },
+            where: { user_id: req.session.user_id, track_type: 0 },
             include: { model: User, attributes: ['username'] }
         })
         .then(dbPostData => res.json(dbPostData))
