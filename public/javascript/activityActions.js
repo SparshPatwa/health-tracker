@@ -46,6 +46,8 @@ document.querySelector('#calorie_intake').addEventListener('click', async functi
     e.preventDefault();
     let calorie_intake = document.querySelector('input[name="calorie-intake"]').value;
     let calorie_intake_date = document.querySelector('input[name="calorie-intake-date"]').value;
+    console.log("calorie", calorie_intake_);
+    console.log("calorie_date", calorie_intake_date)
     let response;
     let data;
     try {
@@ -83,7 +85,9 @@ document.querySelector('#calorie_intake').addEventListener('click', async functi
 document.querySelector('#calorie_outake').addEventListener('click', async function(e) {
     e.preventDefault();
     let calorie_outake = document.querySelector('input[name="calorie-outake"]').value;
-    let calorie_outake_date = document.querySelector('input[name="calorie-outake-date"]').value;
+    let calorie_outake_date = document.querySelector('input[name="calorie-outake-date"]').value;    
+    console.log("calorie",  calorie_outake);    
+    console.log("calorie_date",  calorie_outake_date)
     let response;
     let data;
     try {
