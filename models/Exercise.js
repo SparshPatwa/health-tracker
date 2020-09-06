@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../util/connect');
 
-class Exercise extends Model {}
+class Exercise extends Model { }
 
-Exercise.init({
+Exercise.init(
+{
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -32,15 +33,16 @@ Exercise.init({
     },
     record_date: {
         type: DataTypes.DATEONLY,
-        defaultValue: Date.now,
         allowNull: false
     }
-}, {
+},
+{
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'exercise'
-});
+}
+);
 
 module.exports = Exercise;
