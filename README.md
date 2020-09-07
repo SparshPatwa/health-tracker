@@ -40,11 +40,10 @@
 This application is covered by the MIT license. 
 
 ## Contributers
-👪 Sparsh Patwa  
-👪 Army David  
+👪 [Sparsh Patwa](https://www.linkedin.com/in/sparsh-patwa-30132848), Army David  
 
 ## Video-Walkthrough
-[Screen recording of walk-through](./public/assets/HealthTracker-Video-Walkthrough.mov)  
+[🎥](./public/assets/HealthTracker-Video-Walkthrough.mov) Screen recording of walk-through  
 
 ## Deployment
 [⛵️](https://health-track-it.herokuapp.com/about) Deployed using Heroku  
