@@ -12,7 +12,7 @@
 - [Usage](#usage)
 - [License](#license)
 - [Contributers](#contributers)
-- [Tests](#tests)
+- [Video Walkthrough](#video-walkthrough)
 - [Questions](#questions)
 
 ## Installation
@@ -31,8 +31,10 @@ This application is covered by the MIT license.
 👪 Sparsh Patwa  
 👪 Army David  
 
+## Video-Walkthrough
+
 ## Questions
-<br />
-:octocat: Find me on GitHub: [Sparsh Patwa](https://github.com/SparshPatwa)<br />
-<br />
-✉️ Email me with any questions: <br />[patwa.sparsh@gmail.com](emailto:)<br />
+:octocat: Find me on GitHub:  
+![Sparsh Patwa](https://github.com/SparshPatwa)  
+✉️ Email me with any questions:  
+![Sparsh Patwa](emailto:)  
