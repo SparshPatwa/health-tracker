@@ -34,7 +34,5 @@ This application is covered by the MIT license.
 ## Video-Walkthrough
 
 ## Questions
-:octocat: Find me on GitHub:  
-![Sparsh Patwa](https://github.com/SparshPatwa)  
-✉️ Email me with any questions:  
-![Sparsh Patwa](emailto:)  
+[:octocat:](https://github.com/SparshPatwa) Find me on GitHub  
+[✉️](emailto:) Email me with any questions  
