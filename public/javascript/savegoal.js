@@ -1,39 +1,46 @@
+const debugON = 0;
 document.querySelector("#saveGoal").addEventListener('click', function(e) {
     e.preventDefault();
     let goaldate = document.querySelector('input[name="goal-date"]').value;
     let watergoal = document.querySelector('input[name="water-goal"]').value;
     let calgoal = document.querySelector('input[name="calorie-goal"]').value;
     let exercisegoal = document.querySelector('input[name="exercise-goal"]').value;
-    console.log("water", watergoal, calgoal, exercisegoal);
-
-    fetch('/api/water/goalcreate/' + goaldate + '/' + watergoal)
-        .then(response => {
-            return response.json();
-        })
-        .then(d => {
-            console.log(d);
-            // call to calori
-            fetch('/api/calorie/goalcreate/' + goaldate + '/' + calgoal)
-                .then(responseCal => {
-                    return responseCal.json();
-                })
-                .then(dCal => {
-                    console.log("Calorie", dCal);
-                    fetch('/api/exercise/goalcreate/' + goaldate + '/' + exercisegoal)
-                        .then(respExercise => {
-                            return respExercise.json();
-                        })
-                        .then(dExercise => {
-                            console.log("dExer", dExercise);
-                            window.location.reload();
-                        })
-                })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    if(debugON)
+        console.log("water", watergoal, calgoal, exercisegoal);
+    if(goaldate && watergoal && calgoal && exercisegoal) {
+        fetch('/api/water/goalcreate/' + goaldate + '/' + watergoal)
+            .then(response => {
+                return response.json();
+            })
+            .then(d => {
+                if(debugON)
+                    console.log(d);
+                // call to calori
+                fetch('/api/calorie/goalcreate/' + goaldate + '/' + calgoal)
+                    .then(responseCal => {
+                        return responseCal.json();
+                    })
+                    .then(dCal => {
+                        if(debugON)
+                            console.log("Calorie", dCal);
+                        fetch('/api/exercise/goalcreate/' + goaldate + '/' + exercisegoal)
+                            .then(respExercise => {
+                                return respExercise.json();
+                            })
+                            .then(dExercise => {
+                                if(debugON)
+                                    console.log("dExer", dExercise);
+                                window.location.reload();
+                            })
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        alert("Please enter the Date and Goals you'd like to set");
+    }
 })
-
 async function getGoals() {
     let response;
     let data;
@@ -58,10 +65,10 @@ async function getGoals() {
         console.log("err", err);
     }
     // use data from water
-    console.log("wataer data", data)
+    if(debugON)
+        console.log("wataer data", data)
         // get data for calorie
     try {
-
         response = await fetch('/api/calorie');
     } catch (err) {
         console.log("err", err)
@@ -75,8 +82,8 @@ async function getGoals() {
     } catch (err) {
         console.log("err", err);
     }
-
-    console.log("calor", data)
+    if(debugON)
+        console.log("calor", data)
         // get data for exercise
     try {
 
@@ -92,15 +99,12 @@ async function getGoals() {
     } catch (err) {
         console.log("err", err);
     }
-
-    console.log("exercise data", data)
+    if(debugON)
+        console.log("exercise data", data)
     return goals;
 
 }
 getGoals().then(g => {
-    console.log("g", g)
-
-
-
-
+    if(debugON)
+        console.log("g", g)
 })

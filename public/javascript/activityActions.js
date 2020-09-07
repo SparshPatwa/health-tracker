@@ -1,4 +1,4 @@
-const debugON = 1;
+const debugON = 0;
 document.querySelector('#oz_intake').addEventListener('click', async function(e) {
     e.preventDefault();
     let oz_intake = document.querySelector('input[name="oz-intake"]').value;
@@ -36,7 +36,6 @@ document.querySelector('#oz_intake').addEventListener('click', async function(e)
         alert("Please enter the Date and Water intake that you'd like to track");
     }
 })
-
 document.querySelector('#calorie_intake').addEventListener('click', async function(e) {
     e.preventDefault();
     let calorie_intake = document.querySelector('input[name="calorie-intake"]').value;
@@ -109,7 +108,6 @@ document.querySelector('#calorie_outake').addEventListener('click', async functi
         alert("Please enter the Date and Exercise calories Burnt that you'd like to track");
     }
 })
-
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -124,7 +122,6 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 document.querySelector("#displayActivities").addEventListener('click', function(e) {});
-// getGoals
 async function getGoals() {
     let response;
     let data;
@@ -134,67 +131,60 @@ async function getGoals() {
         "calorie_intake": [],
         "calorie_outake": []
     }
-
-    // call for water
+    // Backend call for Water goal data
     try {
         response = await fetch(`/api/water/goal`);
     } catch (err) {
         console.log(err)
     }
-
     try {
         data = await response.json()
     } catch (err) {
         console.log(err)
     }
-
-
-    json['oz_intake'].push(data.oz_intake);
-
-
-    console.log("goals water data", data)
-
-    // call for calorie
+    if(data === null) {
+        json['oz_intake'].push(0);
+    } else {
+        json['oz_intake'].push(data.oz_intake);
+    }
+    if(debugON)
+        console.log("goals water data", data)
+    // Backend call for Calorie goal data
     try {
         response = await fetch(`/api/calorie/goal`);
     } catch (err) {
         console.log(err)
     }
-
     try {
         data = await response.json()
     } catch (err) {
         console.log(err)
     }
-
-
-    json['calorie_intake'].push(data.calorie_intake);
-
-
-    console.log("goals calorie intake data", data)
-
-
-
-    // call for exervcise
+    if(data === null) {
+        json['calorie_intake'].push(0);
+    } else {
+        json['calorie_intake'].push(data.calorie_intake);
+    }
+    if(debugON)
+        console.log("goals calorie intake data", data)
+    // Backend call for Exercise goal data
     try {
         response = await fetch(`/api/exercise/goal`);
     } catch (err) {
         console.log(err)
     }
-
     try {
         data = await response.json()
     } catch (err) {
         console.log(err)
     }
-
-
-    json['calorie_outake'].push(data.calorie_outake)
+    if(data === null) {
+        json['calorie_outake'].push(0)
+    } else {
+        json['calorie_outake'].push(data.calorie_outake)
+    }
     return json;
 }
-
-
-
 async function getActivities(date = new Date(), initial = true) {
     let response;
     let data;
@@ -204,76 +194,90 @@ async function getActivities(date = new Date(), initial = true) {
         "calorie_intake": [],
         "calorie_outake": []
     }
-    console.log(formatDate(date));
+    if(debugON)
+        console.log(formatDate(date));
     if (initial) {
         calendar.value = formatDate(date);
     }
-
-    // call for water
+    // Backend call for Water achievements data
     try {
-        response = await fetch(`/api/water?track_type=1&record_date=${date}`);
+        response = await fetch("/api/water/achievement/"+date);
     } catch (err) {
         console.log(err)
     }
-
     try {
         data = await response.json()
     } catch (err) {
         console.log(err)
     }
-    for (let i = 0; i < data.length; i++) {
-        let w = data[i];
-        json['oz_intake'].push(w.oz_intake);
+    if(data === null) {
+        json['oz_intake'].push(0);
+    } else if(data.length === undefined) {
+        json['oz_intake'].push(data.oz_intake);
+    } else {
+        for (let i = 0; i < data.length; i++) {
+            let w = data[i];
+            json['oz_intake'].push(w.oz_intake);
+        }
     }
-    console.log("water data", data)
-
-    // call for calorie
+    if(debugON)
+        console.log("water data", data.oz_intake);
+    // Backend call for Calorie achievemtns data
     try {
-        response = await fetch(`/api/calorie?track_type=1&record_date=${date}`);
+        response = await fetch(`/api/calorie/achievement/${date}`);
     } catch (err) {
         console.log(err)
     }
-
-    try {
-        data = await response.json()
-    } catch (err) {
-        console.log(err)
-    }
-    for (let i = 0; i < data.length; i++) {
-        let w = data[i];
-        json['calorie_intake'].push(w.calorie_intake);
-    }
-    console.log("calorie data", data)
-
-
-
-    // call for exercise
-    try {
-        response = await fetch(`/api/exercise?track_type=1&record_date=${date}`);
-    } catch (err) {
-        console.log(err)
-    }
-
     try {
         data = await response.json()
     } catch (err) {
         console.log(err)
     }
-    for (let i = 0; i < data.length; i++) {
-        let w = data[i];
-        json['calorie_outake'].push(w.calorie_outake);
+    if(data === null) {
+        json['calorie_intake'].push(0);
+    } else if(data.length === undefined) {
+        json['calorie_intake'].push(data.calorie_intake);
+    } else {
+        for (let i = 0; i < data.length; i++) {
+            let w = data[i];
+            json['calorie_intake'].push(w.calorie_intake);
+        }
     }
-
+    if(debugON)
+        console.log("calorie data", json['calorie_intake']);
+    // Backend call for Exercise achievement data
+    try {
+        response = await fetch(`/api/exercise/achievement/${date}`);
+    } catch (err) {
+        console.log(err)
+    }
+    try {
+        data = await response.json()
+    } catch (err) {
+        console.log(err)
+    }
+    if(data === null) {
+        json['calorie_outake'].push(0);
+    } else if(data.length === undefined) {
+        json['calorie_outake'].push(data.calorie_outake);
+    } else {    
+        for (let i = 0; i < data.length; i++) {
+            let w = data[i];
+            json['calorie_outake'].push(w.calorie_outake);
+        }
+    }
+    if(debugON)
+        console.log("exercise data", json['calorie_outake'])
     let g = await getGoals();
-
+    // Return goals and achievment data to be plotted
     return {
         goals: g,
         activities: json
     }
 }
-
 getActivities().then(data => {
-    console.log("the data", data)
+    if(debugON)
+        console.log("the data", data)
     let keys = Object.keys(data.goals);
     for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
@@ -281,10 +285,11 @@ getActivities().then(data => {
     }
 
 });
-
 function createHighChartScatter({ goals, activities, title }) {
-    console.log("goals", goals)
-    console.log("activities", activities)
+    if(debugON)
+        console.log("goals", goals)
+    if(debugON)
+        console.log("activities", activities)
     let titleMap = {
         'oz_intake': 'Water',
         'calorie_intake': 'Food',
@@ -298,10 +303,9 @@ function createHighChartScatter({ goals, activities, title }) {
             text: titleMap[title]
         },
         subtitle: {
-            text: 'Source: Actuals vs Goals</a>'
+            text: 'Achieved vs Goal</a>'
         },
         xAxis: {
-            //categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
             title: {
                 text: null
             }
@@ -317,7 +321,7 @@ function createHighChartScatter({ goals, activities, title }) {
             }
         },
         tooltip: {
-            valueSuffix: ' millions'
+            valueSuffix: ''
         },
         plotOptions: {
             bar: {
@@ -341,20 +345,20 @@ function createHighChartScatter({ goals, activities, title }) {
             enabled: false
         },
         series: [{
-            name: 'Goal (Oz)',
+            name: 'Goal',
             data: [goals.reduce((a, b) => a + b, 0)]
         }, {
-            name: 'Activity (Oz)',
+            name: 'Activity',
             data: [activities.reduce((a, b) => a + b, 0)]
         }]
     });
 }
-
 document.querySelector('#displayActivities').addEventListener('click', async function(e) {
     e.preventDefault();
     let date = document.querySelector('input[name="activity-date"]').value;
     getActivities(date, false).then(data => {
-        console.log("the data", data)
+        if(debugON)
+            console.log("the data", data)
         let keys = Object.keys(data.goals);
         for (let i = 0; i < keys.length; i++) {
             let key = keys[i];
@@ -362,6 +366,6 @@ document.querySelector('#displayActivities').addEventListener('click', async fun
         }
 
     });
-
-    console.log("getctivites complete")
+    if(debugON)
+        console.log("getctivites complete")
 })
