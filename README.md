@@ -1,5 +1,5 @@
 
-<h1 align="center">Health Tracker: Personal Water/Food/Exercise Tracking Webapp</h1>
+<h1 align="center">Health Tracker: Personal Water/Food/Exercise Tracking WebApp</h1>
 
 ![badge](https://img.shields.io/badge/license-MIT-brightgreen)<br />
 
@@ -8,7 +8,8 @@
 
 ## Table of Contents
 - [Description](#description)
-- [Installation](#installation)
+- [Installation](#installation)  
+- [Technologies](#technologies)
 - [Usage](#usage)
 - [License](#license)
 - [Contributers](#contributers)
@@ -17,6 +18,16 @@
 
 ## Installation
 💾 npm install  
+
+## Technologies
+🔨 Express  
+🔨 Sequlize   
+🔨 Express-Sessions  
+🔨 Bcrypt  
+🔨 Express  
+🔨 Connect-Session-Sequelize  
+🔨 JAWSDB  
+🔨 MySQL  
 
 ## Usage
 💻 npm run seed  
@@ -35,4 +46,4 @@ This application is covered by the MIT license.
 
 ## Questions
 [:octocat:](https://github.com/SparshPatwa) Find me on GitHub  
-[✉️](emailto:) Email me with any questions  
+[✉️](mailto:patwa.sparsh@gmail.com) Email me with any questions  
