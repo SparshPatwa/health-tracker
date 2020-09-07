@@ -39,7 +39,7 @@
 <br />
 This application is covered by the MIT license. 
 
-## Contributers
+## Contributors
 👪 [Sparsh Patwa](https://www.linkedin.com/in/sparsh-patwa-30132848), Army David  
 
 ## Video-Walkthrough
