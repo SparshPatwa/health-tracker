@@ -9,17 +9,18 @@
 ## Table of Contents
 - [Description](#description)
 - [Installation](#installation)  
-- [Technologies](#technologies)
+- [Backend Technologies](#backend-technologies)
 - [Usage](#usage)
 - [License](#license)
 - [Contributers](#contributers)
 - [Video Walkthrough](#video-walkthrough)
+- [Deployment](#deployment)
 - [Questions](#questions)
 
 ## Installation
 💾 npm install  
 
-## Technologies
+## Backend-Technologies
 🔨 Express  
 🔨 Sequlize   
 🔨 Express-Sessions  
@@ -43,6 +44,10 @@ This application is covered by the MIT license.
 👪 Army David  
 
 ## Video-Walkthrough
+[Screen recording of walk-through](./public/assets/HealthTracker-Video-Walkthrough.mov)  
+
+## Deployment
+[⛵️](https://health-track-it.herokuapp.com/about) Deployed using Heroku  
 
 ## Questions
 [:octocat:](https://github.com/SparshPatwa) Find me on GitHub  
