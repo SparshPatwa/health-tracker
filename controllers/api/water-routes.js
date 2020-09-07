@@ -59,7 +59,7 @@ router.get('/achievement/:date', (req, res) => {
         res.redirect('/');
         return;
     }
-    Water.findOne({
+    Water.findAll({
         where: { user_id: req.session.user_id, track_type: 1, record_date: req.params.date },
         include: { model: User, attributes: ['username'] }
     })
