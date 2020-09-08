@@ -25,11 +25,6 @@ h1 {
 #about>#header {
     background-color: rgba(0, 0, 0, .4);
     color: white;
-    margin-right: 0px !important;
-}
-
-#about>#header ul {
-    padding: 0 !important;
 }
 
 #about>#header li {
@@ -37,7 +32,7 @@ h1 {
     background-color: rgba(255, 255, 255, .5);
     list-style: none;
     text-align: center;
-    padding: 1em;
+    padding: 15px;
 }
 
 #about>#header #title {
