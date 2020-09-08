@@ -40,7 +40,7 @@
 This application is covered by the MIT license. 
 
 ## Contributors
-👪 [Sparsh Patwa](https://www.linkedin.com/in/sparsh-patwa-30132848), Army David  
+👪 [Sparsh Patwa](https://www.linkedin.com/in/sparsh-patwa-30132848), Army David and Chantal Eshghipour  
 
 ## Video-Walkthrough
 [🎥](./public/assets/HealthTracker-Video-Walkthrough.mov) Screen recording of walk-through  
